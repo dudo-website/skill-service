@@ -1,0 +1,22 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+# https://graphql.org/learn/schema/
+
+type Skill {
+  id: ID!
+  name: String!
+  proficient: Boolean!
+}
+
+extend type Technology @key(fields: "id") {
+  id: ID! @external
+  skills: [Skill]
+}
+
+type Query {
+  """
+  Fetch a list of skills.
+  """
+  skills: [Skill!]!
+}
