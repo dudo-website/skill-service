@@ -5,7 +5,7 @@ package generated
 import (
 	"bytes"
 	"context"
-	"dudo/go_hello_world/graph/model"
+	"dudo/skill_service/graph/model"
 	"errors"
 	"fmt"
 	"strconv"
@@ -404,7 +404,7 @@ func (ec *executionContext) _Entity_findTechnologyByID(ctx context.Context, fiel
 	}
 	res := resTmp.(*model.Technology)
 	fc.Result = res
-	return ec.marshalNTechnology2ᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐTechnology(ctx, field.Selections, res)
+	return ec.marshalNTechnology2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐTechnology(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_skills(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -439,7 +439,7 @@ func (ec *executionContext) _Query_skills(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.([]*model.Skill)
 	fc.Result = res
-	return ec.marshalNSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkillᚄ(ctx, field.Selections, res)
+	return ec.marshalNSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkillᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query__entities(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -759,7 +759,7 @@ func (ec *executionContext) _Technology_skills(ctx context.Context, field graphq
 	}
 	res := resTmp.([]*model.Skill)
 	fc.Result = res
-	return ec.marshalOSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkill(ctx, field.Selections, res)
+	return ec.marshalOSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) __Service_sdl(ctx context.Context, field graphql.CollectedField, obj *fedruntime.Service) (ret graphql.Marshaler) {
@@ -2740,7 +2740,7 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) marshalNSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkillᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
+func (ec *executionContext) marshalNSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkillᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2764,7 +2764,7 @@ func (ec *executionContext) marshalNSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNSkill2ᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkill(ctx, sel, v[i])
+			ret[i] = ec.marshalNSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2784,7 +2784,7 @@ func (ec *executionContext) marshalNSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalNSkill2ᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v *model.Skill) graphql.Marshaler {
+func (ec *executionContext) marshalNSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v *model.Skill) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2809,11 +2809,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNTechnology2dudoᚋgo_hello_worldᚋgraphᚋmodelᚐTechnology(ctx context.Context, sel ast.SelectionSet, v model.Technology) graphql.Marshaler {
+func (ec *executionContext) marshalNTechnology2dudoᚋskill_serviceᚋgraphᚋmodelᚐTechnology(ctx context.Context, sel ast.SelectionSet, v model.Technology) graphql.Marshaler {
 	return ec._Technology(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNTechnology2ᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐTechnology(ctx context.Context, sel ast.SelectionSet, v *model.Technology) graphql.Marshaler {
+func (ec *executionContext) marshalNTechnology2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐTechnology(ctx context.Context, sel ast.SelectionSet, v *model.Technology) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -3212,7 +3212,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) marshalOSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
+func (ec *executionContext) marshalOSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -3239,7 +3239,7 @@ func (ec *executionContext) marshalOSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOSkill2ᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkill(ctx, sel, v[i])
+			ret[i] = ec.marshalOSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3253,7 +3253,7 @@ func (ec *executionContext) marshalOSkill2ᚕᚖdudoᚋgo_hello_worldᚋgraphᚋ
 	return ret
 }
 
-func (ec *executionContext) marshalOSkill2ᚖdudoᚋgo_hello_worldᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v *model.Skill) graphql.Marshaler {
+func (ec *executionContext) marshalOSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v *model.Skill) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

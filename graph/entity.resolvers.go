@@ -5,8 +5,8 @@ package graph
 
 import (
 	"context"
-	"dudo/go_hello_world/graph/generated"
-	"dudo/go_hello_world/graph/model"
+	"dudo/skill_service/graph/generated"
+	"dudo/skill_service/graph/model"
 	"fmt"
 	"math/rand"
 )
