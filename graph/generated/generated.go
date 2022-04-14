@@ -236,7 +236,7 @@ type Skill {
 
 extend type Technology @key(fields: "id") {
   id: ID! @external
-  skills: [Skill]
+  skills: [Skill]!
 }
 
 type Query {
@@ -755,11 +755,14 @@ func (ec *executionContext) _Technology_skills(ctx context.Context, field graphq
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Skill)
 	fc.Result = res
-	return ec.marshalOSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, field.Selections, res)
+	return ec.marshalNSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) __Service_sdl(ctx context.Context, field graphql.CollectedField, obj *fedruntime.Service) (ret graphql.Marshaler) {
@@ -2248,6 +2251,9 @@ func (ec *executionContext) _Technology(ctx context.Context, sel ast.SelectionSe
 
 			out.Values[i] = innerFunc(ctx)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -2740,6 +2746,44 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
+func (ec *executionContext) marshalNSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalOSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	return ret
+}
+
 func (ec *executionContext) marshalNSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkillᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
@@ -3210,47 +3254,6 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	}
 	res := graphql.MarshalBoolean(*v)
 	return res
-}
-
-func (ec *executionContext) marshalOSkill2ᚕᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v []*model.Skill) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
 }
 
 func (ec *executionContext) marshalOSkill2ᚖdudoᚋskill_serviceᚋgraphᚋmodelᚐSkill(ctx context.Context, sel ast.SelectionSet, v *model.Skill) graphql.Marshaler {

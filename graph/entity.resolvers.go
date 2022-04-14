@@ -8,12 +8,17 @@ import (
 	"dudo/skill_service/graph/generated"
 	"dudo/skill_service/graph/model"
 	"fmt"
-	"math/rand"
 )
 
 func (r *entityResolver) FindTechnologyByID(ctx context.Context, id string) (*model.Technology, error) {
+	skill := &model.Skill{
+		ID:         fmt.Sprintf("S%s", id),
+		Name:       "foo",
+		Proficient: true,
+	}
+
 	tech := &model.Technology{
-		ID: fmt.Sprintf("T%d", rand.Intn(100)),
+		Skills: []*model.Skill{skill},
 	}
 	return tech, nil
 }

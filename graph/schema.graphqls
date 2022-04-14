@@ -11,7 +11,7 @@ type Skill {
 
 extend type Technology @key(fields: "id") {
   id: ID! @external
-  skills: [Skill]
+  skills: [Skill]!
 }
 
 type Query {
